@@ -1,5 +1,7 @@
 package com.campusdual.classroom;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Exercise10 {
@@ -9,8 +11,21 @@ public class Exercise10 {
     // El mensaje a imprimir es → La bola es de color: COLOR_BOLA
     // COLOR_BOLA puede ser → rojo, azul, verde
     public static void main(String[] args) {
+        int blueCount = 0;
 
+        do {
+            String color = getBall();
+
+            System.out.println("The ball is: " + color);
+
+            // Si la bola es azul, incrementar el contador
+            if (color == "azul") {
+                blueCount++;
+            }
+        } while (blueCount < 2);
     }
+
+
 
     //TODO ↓
     // Un método que devuelva una cadena de texto con el color de una pelota (en minúscula). Dicho color se escogerá de
@@ -20,10 +35,29 @@ public class Exercise10 {
     // 2 → azul
     // 3 → verde
     public static String getBall() {
-        return null;
-    }
+            int randomValue = randomWithRange(1, 3);
+            String color;
+
+            // Usar switch para asignar un color basado en el valor aleatorio
+            switch (randomValue) {
+                case 1:
+                    color = "rojo";
+                    break;
+                case 2:
+                    color = "azul";
+                    break;
+                case 3:
+                    color = "verde";
+                    break;
+                default:
+                    color = "indefinido";
+            }
+            return color;
+        }
+
 
     public static int randomWithRange(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min,max);
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
     }
 }
